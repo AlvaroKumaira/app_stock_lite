@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../dependencies/business-report.png</file>
+        <file>../dependencies/home.png</file>
+        <file>../dependencies/import.png</file>
+        <file>../dependencies/logo.png</file>
+        <file>../dependencies/magnifying-glass.png</file>
+        <file>../dependencies/purchase.png</file>
+        <file>../dependencies/settings.png</file>
+        <file>../dependencies/background.png</file>
+        <file>../dependencies/spreadsheet.png</file>
+        <file>../dependencies/close.png</file>
+        <file>../dependencies/collapse.png</file>
+        <file>../dependencies/download.png</file>
+        <file>../dependencies/seta.png</file>
+        <file>../dependencies/calendar_arrow.png</file>
+    </qresource>
+</RCC>
