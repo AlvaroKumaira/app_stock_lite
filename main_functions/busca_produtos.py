@@ -41,36 +41,4 @@ def search_function(user_search):
     # Use the 'download' function to retrieve the final data set based on the group ID
     data_frame = download(query_resultado, (group_id,))
 
-    # If the final data set is successfully retrieved, perform additional operations
-    if not data_frame.empty:
-        try:
-            # Define the path to the Excel file within the 'params' folder at the project's root
-            base_file_path = os.path.join('params', 'Base_df.xlsx')
-            inv_file_path = os.path.join('params', 'inv_df.xlsx')
-
-            # Read the local Excel file from the specified folder
-            base_df = pd.read_excel(base_file_path)
-            inv_df = pd.read_excel(inv_file_path)
-
-            # Convert the group ID columns to string to ensure matching types
-            data_frame['B1_ZGRUPO'] = data_frame['B1_ZGRUPO'].astype(str)
-            base_df['Agrupamento'] = base_df['Agrupamento'].astype(str)
-            inv_df['Agrupamento'] = inv_df['Agrupamento'].astype(str)
-
-            # Merge with the data_frame based on the group ID (B1_ZGRUPO to Agrupamento)
-            merged_df = data_frame.merge(base_df, left_on='B1_ZGRUPO', right_on='Agrupamento', how='left')
-
-            final_df = merged_df.merge(inv_df, left_on='B1_ZGRUPO', right_on='Agrupamento', how='left')
-
-            final_df.fillna(0, inplace=True)
-
-            # Log the completion of the process and return the merged DataFrame
-            logger.info(f"Search complete with {len(final_df)} results, additional data merged from local Excel file.")
-            return final_df
-
-        except Exception as e:
-            logger.error(f"An error occurred during the merging process: {e}")
-            return data_frame  # Return the original DataFrame if merging fails
-    else:
-        logger.error("An error occurred during the search.")
-        return pd.DataFrame()  # Return an empty DataFrame for consistency
+    return data_frame
